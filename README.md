@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<!--
+Bu soruda, rastgele kullanıcıların aranabilir bir listesini render etmenizi istiyoruz. Kullanıcı verilerini almak için "https://randomuser.me/api?results=number" adresine GET isteği göndererek verileri alabilirsiniz. Bu API, geliştirme için kimlik doğrulama gerektirmeyen ücretsiz bir API'dir. Ancak, aşırı talep gönderirseniz istekleriniz engellenebilir, bu nedenle sadece birkaç kullanıcı verisi için sorgu yapmanızı öneririm.
 
-## Getting Started
+Verilerin bir örneği, `DATA` adı altında paylaşılmıştır. Bu örnekte, her bir kullanıcının bazı bilgileri yer almaktadır.
 
-First, run the development server:
+const DATA = {
+  results: [
+    {
+      gender: "female",
+      name: { title: "Miss", first: "Sara", last: "Johnson" },
+      location: {
+        street: { number: 6263, name: "Kingsway" },
+        city: "Winchester",
+        state: "West Yorkshire",
+        country: "United Kingdom",
+        postcode: "US4C 3HD",
+        coordinates: { latitude: "13.7996", longitude: "179.3694" },
+        timezone: {
+          offset: "-6:00",
+          description: "Central Time (US & Canada), Mexico City",
+        },
+      },
+      email: "sara.johnson@example.com",
+      login: {
+        uuid: "d703a5ff-7e73-400a-a735-f330addfcb31",
+        username: "goldenzebra309",
+        password: "clevelan",
+        salt: "3CobdNiB",
+        md5: "bd978843e8b18cd6e7424a5a18f62af5",
+        sha1: "7e6bafa636c6f7245241d8a2d3e0190f9cc40b87",
+        sha256:
+          "224588a5360826e3495a16f16fa5007e4ef439930df47760616e2c79ca704534",
+      },
+      dob: { date: "1957-06-04T12:40:38.974Z", age: 64 },
+      registered: { date: "2002-07-09T02:17:52.520Z", age: 19 },
+      phone: "015242 69350",
+      cell: "0792-242-687",
+      id: { name: "NINO", value: "XP 63 26 10 L" },
+      picture: {
+        large: "https://randomuser.me/api/portraits/women/64.jpg",
+        medium: "https://randomuser.me/api/portraits/med/women/64.jpg",
+        thumbnail: "https://randomuser.me/api/portraits/thumb/women/64.jpg",
+      },
+      nat: "GB",
+    },
+  ],
+  info: { seed: "6bc47b82484c2761", results: 1, page: 1, version: "1.3" },
+};
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Bileşeni oluştururken, yalnızca "title" ve "name" alanlarına erişmeniz gerekecektir. Kullanıcıları bir liste içinde başlıklarıyla birlikte ad ve soyadlarıyla birlikte görüntülemelisiniz. Listeye, kullanıcıların adlarını filtreleyebileceğiniz bir metin input alanı eklemelisiniz. Bu input alanı, bir otomatik tamamlama aracı gibi çalışarak, girilen metne uygun adları listeleyecektir.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Bileşen, adları filtrelerken metin durumunu (input'ta ve isimlerde) dikkate almamalıdır. Yani, büyük/küçük harf duyarlılığı olmamalıdır.
 
-## Learn More
+Örneğin, bileşenin çalışır hali `interview7.png` adlı resim ile gösterilmiştir. Bu örnek, nasıl bir kullanıcı listesi bileşeni oluşturmanız gerektiğini göstermektedir.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Not: Örnek veriler ve resimler public'te bulunabilir. Temel işlevselliği doğru bir şekilde uygulamaya odaklanmanız önemlidir. Daha sonra ekstra özellikler eklemeye yönelebilirsiniz.
+ -->
