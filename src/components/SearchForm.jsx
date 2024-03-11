@@ -60,7 +60,7 @@ const SearchForm = () => {
           Get Random User
         </button>
       </div>
-      <div className="border rounded-lg p-1 m-1">
+      <div className=" p-1 m-1">
         {filteredUsers.map((user) => {
           const { title, first, last } = user.name
 
