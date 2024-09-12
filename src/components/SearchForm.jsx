@@ -1,7 +1,8 @@
 'use client'
 
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 
 const SearchForm = () => {
@@ -98,4 +99,11 @@ const SearchForm = () => {
     </div>
   )
 }
-export default SearchForm
+
+export default function () {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <SearchForm />
+    </Suspense>
+  )
+}
