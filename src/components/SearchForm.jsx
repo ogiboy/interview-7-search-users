@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 
 const SearchForm = () => {
   const [users, setUsers] = useState([])
@@ -31,6 +32,21 @@ const SearchForm = () => {
     setSearchInput(e.target.value.toLowerCase().trim())
   }
 
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const router = useRouter()
+
+  const handleSearch = (text) => {
+    // console.log(text)
+    const params = new URLSearchParams(searchParams)
+    if (text) {
+      params.set('search', text)
+    } else {
+      params.delete('search')
+    }
+    router.replace(`${pathname}?${params.toString()}`)
+  }
+
   const filteredUsers = users.filter((user) => {
     const { first, last } = user.name
     return (
@@ -46,10 +62,13 @@ const SearchForm = () => {
           <input
             type="text"
             id="search"
-            onChange={(e) => handleInput(e)}
+            onChange={(e) => {
+              handleInput(e)
+              handleSearch(e.target.value)
+            }}
             value={searchInput}
-            placeholder="Type Name or Lastname"
-            className="outline-none hover:shadow-lg rounded-md px-1"
+            placeholder="Search in users"
+            className="outline-none hover:shadow-lg rounded-md px-1 text-center"
           />
         </form>
         <button
