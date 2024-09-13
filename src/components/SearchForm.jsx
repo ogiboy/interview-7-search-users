@@ -29,16 +29,21 @@ const SearchForm = () => {
     e.preventDefault()
   }
 
-  const handleInput = (e) => {
-    setSearchInput(e.target.value.toLowerCase().trim())
-  }
-
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const router = useRouter()
 
+  useEffect(() => {
+    const searchQuery = searchParams.get('search')
+    if (searchQuery) {
+      setSearchInput(searchQuery)
+    }
+  }, [searchParams])
+
   const handleSearch = (text) => {
     // console.log(text)
+    setSearchInput(text.toLowerCase().trim())
+
     const params = new URLSearchParams(searchParams)
     if (text) {
       params.set('search', text)
@@ -64,10 +69,10 @@ const SearchForm = () => {
             type="text"
             id="search"
             onChange={(e) => {
-              handleInput(e)
               handleSearch(e.target.value)
             }}
             value={searchInput}
+            // defaultValue={searchParams.get('search')?.toString()}
             placeholder="Search in users"
             className="outline-none hover:shadow-lg rounded-md px-1 text-center"
           />
